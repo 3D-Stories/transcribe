@@ -1,0 +1,5 @@
+# Host-specific config (contains SSH connection details)
+.claude/skills/transcribe/config.json
+
+# Eval workspace (test artifacts, binary outputs)
+.claude/skills/transcribe-workspace/

@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "project": {
+    "name": "transcribe",
+    "type": "scripts",
+    "description": "Portable audio/video transcription toolkit — a Claude Code skill that orchestrates transcription of audio and video files into organized markdown documents using AssemblyAI"
+  },
+  "repo": {
+    "provider": "github",
+    "fullName": "3D-Stories/transcribe",
+    "defaultBranch": "main"
+  },
+  "techStack": ["python", "assemblyai", "fastmcp", "ffmpeg", "bash", "ssh"],
+  "infrastructure": {
+    "hosts": [
+      {
+        "name": "darwin",
+        "address": "10.0.17.204",
+        "sshUser": "root",
+        "description": "Default MCP transcription server host"
+      }
+    ]
+  },
+  "documentation": {
+    "primaryFiles": ["references/setup-guide.md"],
+    "format": "markdown"
+  },
+  "protectionLevel": "sandbox",
+  "custom": {}
+}
