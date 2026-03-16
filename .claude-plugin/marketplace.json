@@ -1,0 +1,14 @@
+{
+  "name": "transcribe",
+  "description": "Transcribe audio and video files into organized markdown documents with speaker diarization using AssemblyAI",
+  "owner": {
+    "name": "3D-Stories",
+    "url": "https://github.com/3D-Stories"
+  },
+  "plugins": [
+    {
+      "name": "transcribe",
+      "path": "."
+    }
+  ]
+}
