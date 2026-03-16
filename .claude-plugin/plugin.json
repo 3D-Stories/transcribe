@@ -1,6 +1,6 @@
 {
   "name": "transcribe",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Transcribe audio and video files into organized markdown documents with speaker diarization using AssemblyAI. Includes guided first-time setup, video-to-audio extraction, and configurable output formats.",
   "author": {
     "name": "3D-Stories"
