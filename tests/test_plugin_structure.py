@@ -141,6 +141,14 @@ class TestMarketplace:
             data = json.load(f)
         assert "name" in data["owner"]
 
+    def test_marketplace_plugin_has_source(self):
+        """Plugin entry must use 'source' not 'path' — Claude Code validates this."""
+        with open(REPO_ROOT / ".claude-plugin" / "marketplace.json") as f:
+            data = json.load(f)
+        plugin = data["plugins"][0]
+        assert "source" in plugin, "Plugin entry must have 'source' field (not 'path')"
+        assert "version" in plugin, "Plugin entry must have 'version' field"
+
 
 class TestVersioning:
     """Validate version consistency across plugin files."""
@@ -165,7 +173,8 @@ class TestProjectFiles:
 
     def test_readme_has_installation(self):
         content = (REPO_ROOT / "README.md").read_text()
-        assert "claude plugin install" in content
+        assert "claude plugin marketplace add" in content
+        assert "claude plugin install transcribe@transcribe" in content
 
     def test_license_exists(self):
         assert (REPO_ROOT / "LICENSE").exists()

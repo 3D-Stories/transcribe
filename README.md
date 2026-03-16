@@ -33,7 +33,24 @@ A Claude Code plugin that transcribes audio and video files into organized markd
 ## Installation
 
 ```bash
-claude plugin install 3D-Stories/transcribe
+# Add the marketplace (one-time)
+claude plugin marketplace add https://github.com/3D-Stories/transcribe.git
+
+# Install the plugin
+claude plugin install transcribe@transcribe
+```
+
+To update later:
+
+```bash
+claude plugin update transcribe@transcribe
+```
+
+To reinstall from scratch:
+
+```bash
+claude plugin remove transcribe@transcribe
+claude plugin install transcribe@transcribe
 ```
 
 ## Usage
