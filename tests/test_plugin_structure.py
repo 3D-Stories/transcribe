@@ -116,6 +116,47 @@ class TestReferences:
             "Setup guide must not reference old config path"
 
 
+class TestMarketplace:
+    """Validate marketplace.json for plugin distribution."""
+
+    def test_marketplace_exists(self):
+        f = REPO_ROOT / ".claude-plugin" / "marketplace.json"
+        assert f.exists(), "Missing .claude-plugin/marketplace.json"
+
+    def test_marketplace_valid_json(self):
+        with open(REPO_ROOT / ".claude-plugin" / "marketplace.json") as f:
+            data = json.load(f)
+        assert isinstance(data, dict)
+
+    def test_marketplace_has_required_fields(self):
+        with open(REPO_ROOT / ".claude-plugin" / "marketplace.json") as f:
+            data = json.load(f)
+        assert "name" in data
+        assert "description" in data
+        assert "owner" in data
+        assert "plugins" in data
+
+    def test_marketplace_owner_has_name(self):
+        with open(REPO_ROOT / ".claude-plugin" / "marketplace.json") as f:
+            data = json.load(f)
+        assert "name" in data["owner"]
+
+
+class TestVersioning:
+    """Validate version consistency across plugin files."""
+
+    def test_plugin_json_has_semver(self):
+        with open(REPO_ROOT / ".claude-plugin" / "plugin.json") as f:
+            data = json.load(f)
+        parts = data["version"].split(".")
+        assert len(parts) == 3
+        assert all(p.isdigit() for p in parts), f"Version parts must be numeric: {data['version']}"
+
+    def test_claude_md_mentions_versioning(self):
+        content = (REPO_ROOT / "CLAUDE.md").read_text()
+        assert "semver" in content.lower() or "Versioning" in content
+
+
 class TestProjectFiles:
     """Validate top-level project files."""
 
@@ -125,6 +166,23 @@ class TestProjectFiles:
     def test_readme_has_installation(self):
         content = (REPO_ROOT / "README.md").read_text()
         assert "claude plugin install" in content
+
+    def test_license_exists(self):
+        assert (REPO_ROOT / "LICENSE").exists()
+
+    def test_license_is_mit(self):
+        content = (REPO_ROOT / "LICENSE").read_text()
+        assert "MIT License" in content
+
+    def test_claude_md_exists(self):
+        assert (REPO_ROOT / "CLAUDE.md").exists()
+
+    def test_claude_md_has_pre_pr_checklist(self):
+        content = (REPO_ROOT / "CLAUDE.md").read_text()
+        assert "Pre-PR Checklist" in content
+
+    def test_ci_workflow_exists(self):
+        assert (REPO_ROOT / ".github" / "workflows" / "ci.yml").exists()
 
     def test_gitignore_excludes_config(self):
         content = (REPO_ROOT / ".gitignore").read_text()
