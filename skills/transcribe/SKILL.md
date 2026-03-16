@@ -6,7 +6,7 @@ description: Transcribe an audio or video file into an organized markdown docume
 
 You are orchestrating the transcription of an audio or video file into an organized markdown document. Video files are handled transparently — the audio track is extracted first, then transcribed like any audio file.
 
-The transcription server can run locally or on a remote host via SSH. Configuration is stored in `config.json` next to this skill file. If no config exists, the skill walks the user through first-time setup.
+The transcription server can run locally or on a remote host via SSH. Configuration is stored in `.transcribe-config.json` in the project root (this keeps host-specific settings outside the plugin cache, which gets recreated on plugin updates). If no config exists, the skill walks the user through first-time setup.
 
 ## Arguments
 
@@ -15,7 +15,7 @@ If no arguments were provided, ask the user for the file path.
 
 ## Step 0: Prerequisites Check
 
-Check for the config file at `.claude/skills/transcribe/config.json` (relative to the project root).
+Check for the config file at `.transcribe-config.json` in the project root (the current working directory).
 
 **If the config file does not exist:** This is a first-time run. Read `references/setup-guide.md` (in this skill's directory) and follow the setup walkthrough with the user. Once setup is complete and config.json is written, return here and proceed to Step 1.
 

@@ -174,7 +174,7 @@ Replace `<key>` with the actual API key from Step S2.
 
 Write the configuration file so the skill knows where the server lives on subsequent runs.
 
-Write to `.claude/skills/transcribe/config.json`:
+Write to `.transcribe-config.json` in the project root:
 
 ```json
 {
@@ -187,10 +187,10 @@ Write to `.claude/skills/transcribe/config.json`:
 - If local installation, set `"mcp_host": null` and `"remote": false`
 - If remote, `mcp_host` is the SSH connection string (e.g., `"root@10.0.17.204"`)
 
-This file contains host-specific information. If the `.claude/` directory is tracked in git, add this to `.gitignore`:
+This file contains host-specific information and should be gitignored:
 
 ```
-.claude/skills/transcribe/config.json
+.transcribe-config.json
 ```
 
 ---

@@ -1,5 +1,10 @@
-# Host-specific config (contains SSH connection details)
-.claude/skills/transcribe/config.json
+# Host-specific transcription server config (created during first-time setup)
+.transcribe-config.json
 
 # Eval workspace (test artifacts, binary outputs)
 .claude/skills/transcribe-workspace/
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
